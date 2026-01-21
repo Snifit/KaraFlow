@@ -93,7 +93,7 @@ KaraFlow/
 │   ├── pwa.js           # Gestion de l'installation & Cycle de vie SW
 │   ├── wavesurfer.js    # Moteur de visualisation audio
 │   └── mdl.js           # Comportements UI Material Design
-├── audio/               # Pistes de démonstration (RnB, Trap, Pop)
+├── audio/               # Pistes de démonstration (RnB, Hip-Hop, Melodic Trap)
 └── favicon/             # Assets graphiques & Manifest
 
 ```
