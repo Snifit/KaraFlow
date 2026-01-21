@@ -2,7 +2,7 @@
 
 **KaraFlow** est une Progressive Web App (PWA) de studio d'enregistrement mobile. Elle permet de rechercher des paroles, de trouver des rimes, de s'enregistrer sur une instrumentale et de générer un mixage audio (WAV) directement dans le navigateur.
 
-🔗 **Démo en ligne :** [https://snifit.github.io/KaraFlow/](https://www.google.com/search?q=https://snifit.github.io/KaraFlow/)
+🔗 **Démo en ligne :** [https://srv-peda2.iut-acy.univ-smb.fr/gaillotv/pwa/](https://srv-peda2.iut-acy.univ-smb.fr/gaillotv/pwa/)
 
 ---
 
