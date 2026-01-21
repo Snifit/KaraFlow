@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, height=device-height, viewport-fit=cover, width=device-width">
+
+  <meta name="author" content="victor.gaillot@etu.univ-smb.fr" />
+  <meta name="description" content="Testez vos talent de chanteur avec KaraFlow !">
+
+  <meta property="og:description" content="Testez vos talent de chanteur avec KaraFlow !">
+  <meta property="og:image" content="https://srv-peda2.iut-acy.univ-smb.fr/gaillotv/pwa/favicon/og-image-1200x630.png">
+  <meta property="og:locale" content="fr">
+  <meta property="og:title" content="KaraFlow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://srv-peda2.iut-acy.univ-smb.fr/gaillotv/pwa/">
+
+  <meta name="apple-mobile-web-app-title" content="KaFlow">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gaillotv/pwa/favicon/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/mdl.css">
+
+  <script defer src="./js/pwa.js"></script>
+  <script defer src="./js/script.js"></script>
+  <script defer src="./js/mdl.js"></script>
+  <script defer src="./service_worker.js"></script>
+  <script defer src="./js/wavesurfer.js"></script>
+
+  <link rel="icon" type="image/png" href="/gaillotv/pwa/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/gaillotv/pwa/favicon/favicon.svg">
+  <link rel="shortcut icon" href="/gaillotv/pwa/favicon/favicon.ico">
+  <link rel="manifest" href="/gaillotv/pwa/favicon/site.webmanifest">
+
+  <title>KaraFlow - Studio</title>
+</head>
+
+<body>
+  <div class="app-container">
+
+    <header class="app-header">
+      <div class="logo-area">
+        <img alt="KaraFlow" src="./img/pwa.svg" class="app-logo" />
+        <div class="title-stack">
+          <h1>KaraFlow</h1>
+          <span class="version">v2.6 Studio Edition</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">dark_mode</i>
+        </button>
+        <button id="install_button" class="mdl-button mdl-js-button mdl-button--raised btn-primary" disabled>
+          Installer
+        </button>
+        <button id="reload_button" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">refresh</i>
+        </button>
+      </div>
+    </header>
+
+    <main id="karaoke" class="mdl-grid">
+
+      <div class="mdl-cell mdl-cell--12-col card-professional">
+        <h2><i class="material-icons">library_music</i> Paroles</h2>
+
+        <form id="lyrics-form" action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="song">
+            <label class="mdl-textfield__label" for="song">Titre de la chanson...</label>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="artist">
+            <label class="mdl-textfield__label" for="artist">Artiste...</label>
+          </div>
+
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised btn-primary" style="width: 100%;">
+            Chercher les paroles
+          </button>
+        </form>
+
+        <h3>Résultat</h3>
+        <div id="lyrics-result">Recherchez une chanson pour afficher les paroles...</div>
+      </div>
+      <div class="mdl-cell mdl-cell--12-col card-professional">
+        <h2><i class="material-icons">edit_note</i> Assistant d'Écriture</h2>
+
+        <p>Trouver une rime :</p>
+
+        <form id="rhyme-form" action="#">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="flex-grow: 1;">
+              <input class="mdl-textfield__input" type="text" id="rhyme-input">
+              <label class="mdl-textfield__label" for="rhyme-input">Mot à rimer...</label>
+            </div>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised btn-primary">
+              Trouver
+            </button>
+          </div>
+        </form>
+
+        <div id="rhyme-result" style="margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px;"></div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col card-professional">
+        <h2><i class="material-icons">mic</i> Studio Karaoké</h2>
+
+        <h3>1. Choisir une Production</h3>
+        <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
+          <select class="mdl-textfield__input" id="track-selector">
+            <option value="">-- Sélectionner une instru --</option>
+            <option value="instru1.mp3">Production 1 - RnB</option>
+            <option value="instru2.mp3">Production 2 - Trap</option>
+            <option value="instru3.mp3">Production 3 - Pop</option>
+          </select>
+        </div>
+
+        <h3>1.2 Ou importer ta propre prod</h3>
+        <div class="custom-file-upload">
+          <input type="file" id="custom-track-input" accept="audio/*" class="mdl-button">
+        </div>
+
+        <h3>2. Écouter la Prod</h3>
+        <div id="audio-visualizer" style="width: 100%; height: 100px; background: #000; border-radius: 8px; margin-bottom: 10px; overflow: hidden;"></div>
+        <audio id="backing-audio" controls style="width: 100%;"></audio>
+
+        <h3>3. Enregistrement (Synchro)</h3>
+        <div class="record-controls">
+          <button id="record-btn" class="mdl-button mdl-js-button mdl-button--raised">
+            Démarrer l'enregistrement
+          </button>
+          <button id="stop-btn" class="mdl-button mdl-js-button mdl-button--raised" disabled>
+            Arrêter
+          </button>
+        </div>
+
+        <h3>4. Ton enregistrement (Voix seule)</h3>
+        <audio id="recording-playback" controls style="width: 100%;"></audio>
+
+        <button id="play-together-btn" class="mdl-button mdl-js-button mdl-button--raised btn-primary" style="width: 100%; margin-top: 15px;" disabled>
+          <i class="material-icons">play_circle</i> Écouter le Mix (Voix + Prod)
+        </button>
+
+        <button id="download-mix-btn" class="mdl-button mdl-js-button mdl-button--raised" style="width: 100%; margin-top: 10px; background-color: #2ecc71; color: white;" disabled>
+          <i class="material-icons">download</i> Télécharger mon morceau (.wav)
+        </button>
+        <button id="share-mix-btn" class="mdl-button mdl-js-button mdl-button--raised" style="width: 100%; margin-top: 10px; background-color: #3498db; color: white; display: none;">
+          <i class="material-icons">share</i> Partager mon morceau
+        </button>
+      </div>
+
+    </main>
+  </div>
+</body>
+
+</html>

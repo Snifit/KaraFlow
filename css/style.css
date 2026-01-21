@@ -1,0 +1,247 @@
+/* ================== VARIABLES MODERNES & THÈMES ================== */
+:root {
+  /* Mode Clair (Par défaut) */
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --surface: #ffffff;
+  --primary: #6c5ce7;
+  --primary-dark: #a29bfe;
+  --accent: #fd79a8;
+  --text-main: #2d3436;
+  --text-muted: #636e72;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+  --input-bg: #ffffff;
+  --lyrics-bg: #f8f9fa;
+  --border-color: #eee;
+}
+
+[data-theme="dark"] {
+  /* Mode Sombre */
+  --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --surface: #1e1e2d;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --input-bg: #2d2d3f;
+  --lyrics-bg: #16213e;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ================== RESET & BASE ================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ================== EN-TÊTE (HEADER) ================== */
+.app-header {
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.app-logo {
+  height: 45px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.title-stack h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.version {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ================== GRILLE & CARTES ================== */
+#karaoke {
+  padding: 0 !important;
+  gap: 20px;
+}
+
+#karaoke .mdl-cell {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 25px;
+  margin: 0 !important;
+  box-shadow: var(--shadow);
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin: 20px 0 10px;
+}
+
+/* ================== FORMULAIRES & INPUTS ================== */
+.mdl-textfield {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.mdl-textfield__input {
+  border-bottom: 2px solid var(--border-color);
+  color: var(--text-main);
+}
+
+[data-theme="dark"] .mdl-textfield__input {
+  color: #ffffff;
+}
+
+.mdl-textfield--focused .mdl-textfield__input {
+  border-color: var(--primary);
+}
+
+.mdl-textfield__label {
+  color: var(--text-muted);
+}
+
+/* Boutons personnalisés */
+.btn-primary {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3) !important;
+}
+
+/* ================== RÉSULTAT PAROLES ================== */
+#lyrics-result {
+  background: var(--lyrics-bg);
+  border-radius: 12px;
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar personnalisée */
+#lyrics-result::-webkit-scrollbar {
+  width: 6px;
+}
+#lyrics-result::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+/* Style des boutons dans les résultats de paroles (Remplacement de .results-container) */
+#lyrics-result button {
+  text-align: left;
+  height: auto !important;
+  min-height: 50px;
+  padding: 10px;
+  margin-bottom: 8px;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+/* ================== AUDIO & RECORDING ================== */
+audio {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background: #f1f3f4;
+}
+
+[data-theme="dark"] audio {
+  filter: invert(90%) hue-rotate(180deg);
+}
+
+.record-controls {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+#record-btn {
+  background-color: var(--accent) !important;
+  color: white !important;
+  flex: 2;
+}
+
+#stop-btn {
+  background-color: var(--border-color) !important;
+  color: var(--text-main) !important;
+  flex: 1;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 840px) {
+  .app-container {
+    margin: 10px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  #karaoke .mdl-cell {
+    width: 100% !important;
+  }
+}
